@@ -1,9 +1,14 @@
 import discord
 from discord.ext import commands
+import json
+# read token from config file
+config_file = 'config.json'
+with open(config_file, 'r') as c_file:
+    config = json.load(c_file)
 
 description = 'A nice little bot'
 bot = commands.Bot(command_prefix='!', description=description)
-TOKEN = ''
+TOKEN = config['token']
 
 @bot.event
 async def on_ready():
