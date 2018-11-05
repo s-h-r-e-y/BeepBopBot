@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 import json
+import random
 # read token from config file
 config_file = 'config.json'
 with open(config_file, 'r') as c_file:
@@ -23,5 +24,10 @@ async def ping(ctx):
     author = ctx.message.author.name
     server = ctx.message.server.name
     await bot.say('Pong for {} from {}!'.format(author, server))
+
+@bot.command(pass_context=True)
+async def toss(ctx):
+    outcome = ['Heads','Tails']
+    await bot.say('It\'s {}'.format(random.choice(outcome)))
 
 bot.run(TOKEN)
